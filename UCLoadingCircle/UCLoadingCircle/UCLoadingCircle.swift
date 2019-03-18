@@ -15,16 +15,19 @@ class UCLoadingCircle:UIView {
     private var animationLayer:CAShapeLayer = CAShapeLayer()
     
     @IBInspectable
-    var lineWidth:CGFloat
+    var lineWidth:CGFloat = 5
     
     @IBInspectable
-    var loadingBackgroundColor:UIColor
+    var loadingBackgroundColor:UIColor = .lightGray
     
     @IBInspectable
-    var loadingForegroundColor:UIColor
+    var loadingForegroundColor:UIColor = .cyan
+
+    @IBInspectable
+    var animationSpeed:Double = 0.5
     
     @IBInspectable
-    var animation:Bool {
+    var animation:Bool = true {
         didSet {
             if animation == true {
                 self.startAnimation()
@@ -34,30 +37,19 @@ class UCLoadingCircle:UIView {
         }
     }
     
-    @IBInspectable
-    var animationSpeed: Double
     
     override init(frame: CGRect) {
-        self.lineWidth = 5
-        self.loadingBackgroundColor = .lightGray
-        self.loadingForegroundColor = .cyan
-        self.animation = true
-        self.animationSpeed = 0.5
         super.init(frame: frame)
         self.initialize()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        self.lineWidth = 5
-        self.loadingBackgroundColor = .lightGray
-        self.loadingForegroundColor = .cyan
-        self.animation = true
-        self.animationSpeed = 0.5
         super.init(coder: aDecoder)
         self.initialize()
     }
     
     private func initialize() {
+        self.animation = true
         self.drawBackgroundLayer()
         self.drawAnimationLayer()
     }
